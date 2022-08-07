@@ -1,0 +1,13 @@
+#container {
+    margin: 40px auto;
+    /* 水平居中 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+html body {
+    /* 默认背景是黑的，文字也是黑的 */
+    background-color: white;
+    color: black;
+}

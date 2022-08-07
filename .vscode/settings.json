@@ -1,0 +1,8 @@
+{
+    "xml.fileAssociations": [
+        {
+            "pattern": "CSXS/manifest.xml",
+            "systemId": "https://raw.githubusercontent.com/Adobe-CEP/CEP-Resources/master/CEP_7.x/ExtensionManifest_v_7_0.xsd"
+        }
+    ]
+}

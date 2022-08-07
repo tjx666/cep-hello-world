@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- ExtensionBundleId 是插件 id -->
+<!-- Version 指的是 manifest.xml 的 schema 版本 -->
+<ExtensionManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExtensionBundleId="org.ytj.helloWorld" ExtensionBundleVersion="1.0" Version="7.0">
+    <!-- 一个 CEP 插件可以注册多个面板，每一个面板都可以视为一个子插件 -->
+    <ExtensionList>
+        <!-- 注册一个面板，这个面板可以视为一个子插件，插件 id 为 org.ytj.helloWorld.panel -->
+        <Extension Id="org.ytj.helloWorld.panel" Version="0.0.1" />
+    </ExtensionList>
+    <ExecutionEnvironment>
+        <!-- 声明这个插件支持的宿主，也就是说是支持跑在 PS 还是 AE，还是其它 adobe 软件 -->
+        <HostList>
+            <!-- PHSP 和 PHXS 都是说 Photoshop -->
+            <Host Name="PHSP" Version="16.0" />
+            <!-- 16.0 指的是兼容 ps 的 16.0 版本及其以上 -->
+            <Host Name="PHXS" Version="16.0" />
+        </HostList>
+        <!-- 插件支持的语言 -->
+        <LocaleList>
+            <Locale Code="All" />
+        </LocaleList>
+        <RequiredRuntimeList>
+            <!-- 声明支持的 CEP 版本为 CEP9 -->
+            <RequiredRuntime Name="CSXS" Version="9.0" />
+        </RequiredRuntimeList>
+    </ExecutionEnvironment>
+    <DispatchInfoList>
+        <!-- 面板的具体配置 -->
+        <Extension Id="org.ytj.helloWorld.panel">
+            <DispatchInfo>
+                <Resources>
+                    <!-- 面板的网页 HTML 首页路径，相对路径是相对于插件文件夹 -->
+                    <MainPath>./web/index.html</MainPath>
+                    <!-- 和这个面板相关联的 extendscript 线程加载的 extendscript 文件路径 -->
+                    <!-- 不同的面板它们的 jsx 环境是隔离的，这和宿主的实现有关，PS 是隔离的， AE 不是 -->
+                    <ScriptPath>./JSX/index.jsx</ScriptPath>
+                    <!-- 浏览器环境和 nodejs 环境的一些参数 -->
+                    <CEFCommandLine>
+                        <Parameter>--enable-speech-input</Parameter>
+                        <Parameter>--enable-media-stream</Parameter>
+                        <!-- 开启 nodejs 支持，可以在 node 环境直接写 nodejs 代码 -->
+                        <Parameter>--enable-nodejs</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+                <Lifecycle>
+                    <!-- 设置打开插件显示面板界面，也可以设置为 false，打开后不会显示界面-->
+                    <AutoVisible>true</AutoVisible>
+                </Lifecycle>
+                <!-- 面板 UI 配置 -->
+                <UI>
+                    <!-- 除了普通的面板类型还有 -->
+                    <!-- ModalDialog：模态框，不能嵌入 PS 界面，用户在关掉之前不能和 PS 交互  -->
+                    <!-- Modeless：和 ModalDialog 区别在于它不会阻止你和 PS 交互 -->
+                    <!-- Custom：配合 AutoVisible 实现无界面面板 -->
+                    <Type>Panel</Type>
+                    <!-- 插件名称，你在 PS 的菜单中看到的插件名称 -->
+                    <Menu>Hello World</Menu>
+                    <!-- 面板尺寸相关 -->
+                    <Geometry>
+                        <!-- 插件默认宽高 -->
+                        <Size>
+                            <Height>611</Height>
+                            <Width>280</Width>
+                        </Size>
+                        <!-- 插件最大宽高 -->
+                        <MaxSize>
+                            <Height>4000</Height>
+                            <Width>600</Width>
+                        </MaxSize>
+                        <!-- 插件最小宽高 -->
+                        <MinSize>
+                            <Height>611</Height>
+                            <Width>280</Width>
+                        </MinSize>
+                    </Geometry>
+                </UI>
+            </DispatchInfo>
+        </Extension>
+    </DispatchInfoList>
+</ExtensionManifest>
