@@ -4,5 +4,13 @@
             "pattern": "CSXS/manifest.xml",
             "systemId": "https://raw.githubusercontent.com/Adobe-CEP/CEP-Resources/master/CEP_7.x/ExtensionManifest_v_7_0.xsd"
         }
-    ]
+    ],
+    "files.associations": {
+        // 将所有 jsx 代码映射为 javascript 代码而不是 javascriptreact
+        "**/JSX/**/*.jsx": "javascript",
+        // .debug 文件映射为 xml
+        ".debug": "xml",
+        // 将 scripting listener 的 日志文件识别为 javascript
+        "**/Desktop/ScriptingListenerJS.log": "javascript"
+    }
 }
